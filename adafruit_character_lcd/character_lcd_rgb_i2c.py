@@ -81,11 +81,11 @@ class Character_LCD_RGB_I2C(Character_LCD_RGB):
         else:
             mcp = MCP23017(i2c)
 
-        self._left_button = mcp.get_pin(4)
-        self._up_button = mcp.get_pin(3)
-        self._down_button = mcp.get_pin(2)
-        self._right_button = mcp.get_pin(1)
-        self._select_button = mcp.get_pin(0)
+        self._left_button = mcp.get_pin(12)
+        self._up_button = mcp.get_pin(11)
+        self._down_button = mcp.get_pin(10)
+        self._right_button = mcp.get_pin(9)
+        self._select_button = mcp.get_pin(8)
 
         self._buttons = [
             self._left_button,
@@ -98,19 +98,20 @@ class Character_LCD_RGB_I2C(Character_LCD_RGB):
         for pin in self._buttons:
             pin.switch_to_input(pull=digitalio.Pull.UP)
 
+        # Class Character_LCD_RGB->__init__()
         super().__init__(
-            mcp.get_pin(15),
-            mcp.get_pin(13),
-            mcp.get_pin(12),
-            mcp.get_pin(11),
-            mcp.get_pin(10),
-            mcp.get_pin(9),
+            mcp.get_pin(0),     # rs
+            mcp.get_pin(2),     # en
+            mcp.get_pin(3),     # da3
+            mcp.get_pin(4),     # da4
+            mcp.get_pin(5),     # da5
+            mcp.get_pin(6),     # da6
             columns,
             lines,
-            mcp.get_pin(6),
-            mcp.get_pin(7),
-            mcp.get_pin(8),
-            mcp.get_pin(14),
+            mcp.get_pin(14),    # red
+            mcp.get_pin(13),    # green
+            mcp.get_pin(15),    # blue
+            mcp.get_pin(1),     # read_write
         )
 
     @property
@@ -132,7 +133,7 @@ class Character_LCD_RGB_I2C(Character_LCD_RGB):
                     lcd.message = "Left!"
 
         """
-        return not self._left_button.value
+        return self._left_button.value
 
     @property
     def up_button(self) -> bool:
@@ -153,7 +154,7 @@ class Character_LCD_RGB_I2C(Character_LCD_RGB):
                     lcd.message = "Up!"
 
         """
-        return not self._up_button.value
+        return self._up_button.value
 
     @property
     def down_button(self) -> bool:
@@ -174,7 +175,7 @@ class Character_LCD_RGB_I2C(Character_LCD_RGB):
                     lcd.message = "Down!"
 
         """
-        return not self._down_button.value
+        return self._down_button.value
 
     @property
     def right_button(self) -> bool:
@@ -195,7 +196,7 @@ class Character_LCD_RGB_I2C(Character_LCD_RGB):
                     lcd.message = "Right!"
 
         """
-        return not self._right_button.value
+        return self._right_button.value
 
     @property
     def select_button(self) -> bool:
@@ -216,4 +217,4 @@ class Character_LCD_RGB_I2C(Character_LCD_RGB):
                     lcd.message = "Select!"
 
         """
-        return not self._select_button.value
+        return self._select_button.value
