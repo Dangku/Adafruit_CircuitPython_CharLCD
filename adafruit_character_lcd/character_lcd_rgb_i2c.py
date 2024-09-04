@@ -100,18 +100,18 @@ class Character_LCD_RGB_I2C(Character_LCD_RGB):
 
         # Class Character_LCD_RGB->__init__()
         super().__init__(
-            mcp.get_pin(0),     # rs
-            mcp.get_pin(2),     # en
-            mcp.get_pin(3),     # da3
-            mcp.get_pin(4),     # da4
-            mcp.get_pin(5),     # da5
-            mcp.get_pin(6),     # da6
+            mcp.get_pin(0),  # rs
+            mcp.get_pin(2),  # en
+            mcp.get_pin(3),  # da3
+            mcp.get_pin(4),  # da4
+            mcp.get_pin(5),  # da5
+            mcp.get_pin(6),  # da6
             columns,
             lines,
-            mcp.get_pin(14),    # red
-            mcp.get_pin(13),    # green
-            mcp.get_pin(15),    # blue
-            mcp.get_pin(1),     # read_write
+            mcp.get_pin(14),  # red
+            mcp.get_pin(13),  # green
+            mcp.get_pin(15),  # blue
+            mcp.get_pin(1),  # read_write
         )
 
     @property
