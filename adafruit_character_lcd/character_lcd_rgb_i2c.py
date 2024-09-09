@@ -114,6 +114,10 @@ class Character_LCD_RGB_I2C(Character_LCD_RGB):
             mcp.get_pin(1),  # read_write
         )
 
+        # backlight on
+        self.backlight = mcp.get_pin(7)
+        self.backlight.switch_to_output(value=1)
+
     @property
     def left_button(self) -> bool:
         """The left button on the RGB Character LCD I2C Shield or Pi plate.
